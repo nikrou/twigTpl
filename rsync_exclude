@@ -1,0 +1,11 @@
+/Makefile
+/rsync_exclude
+/modele
+/composer.*
+
+/vendor/twig/twig/ext
+/vendor/twig/twig/test
+/vendor/twig/twig/doc
+/vendor/twig/extensions/test
+/vendor/twig/extensions/doc
+/vendor/twig/twig/lib/Twig/Test/

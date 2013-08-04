@@ -1,0 +1,19 @@
+# Translation of twigTpl dotclear plugin to French
+# Copyright(C) 2013 Nicolas Roudaire  http://www.nikrou.net
+# This file is distributed under the same license as the Dotclear package.
+# Nicolas Roudaire <nikrou77@gmail.com>, 2013
+#
+
+msgid ""
+msgstr ""
+
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Enable twigTpl plugin"
+msgstr "Activer le plugin twigTpl"
+
+msgid "Plugin activation"
+msgstr "Activation du plugin"
