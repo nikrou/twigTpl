@@ -19,32 +19,32 @@
 // | MA 02110-1301 USA.                                                    |
 // +-----------------------------------------------------------------------+
 
-class dcLegacy_Twigit
+namespace tests\unit;
+
+include_once __DIR__  . '/../../../vendor/autoload.php';
+
+use atoum;
+
+class dcLegacy_Twigit extends atoum
 {
-  const DC_TAG_VALUE = 'dcValue';
-  const DC_TAG_BLOCK = 'dcBlock';
-  const DC_END_TAG_BLOCK = 'enddcBlock';
-  const DC_TAG_CONTEXT = 'dcContext';
+  private static $dirs = array('legacy' => '/data/legacy/',
+			       'twig' => '/data/twig/'
+			       );
 
-  public function __construct($filename) {
-    if (!file_exists($filename)) {
-      throw new Exception(sprintf('File %s does not exist.', $filename));
+  public function testTransforms() {
+    foreach (glob(__DIR__.self::$dirs['legacy'].'*.html') as $filename) {
+      $twig_tpl = new \dcLegacy_Twigit($filename);
+      $twig_content = $twig_tpl->transform();
+
+      $this
+	->string($twig_tpl->transform())
+	->isIdenticalTo($this->getTwigFile($filename));
     }
-
-    $this->filename = $filename;
   }
 
-  public function transform() {
-    $html_content = file_get_contents($this->filename);
-
-    $html_content = preg_replace('`{{tpl:lang ([^}]*)}}`', '{% '.self::DC_TAG_VALUE.' lang "$1" %}', $html_content);
-    $html_content = preg_replace('`{{tpl:include src="([^"]*)"}}`', '{% include "$1" %}', $html_content);
-    $html_content = preg_replace('`<tpl:([^ >]*) ([^>]*)>`', '{% '.self::DC_TAG_BLOCK.' $1=$2 %}', $html_content);
-    $html_content = preg_replace('`<tpl:([^>]*)>`', '{% '.self::DC_TAG_BLOCK.' $1 %}', $html_content);
-    $html_content = preg_replace('`</tpl:([^>]*)>`', '{% '.self::DC_END_TAG_BLOCK.' %}', $html_content);
-    $html_content = preg_replace('`{{tpl:([^ }]*) ([^}]*)}}`', '{% '.self::DC_TAG_VALUE.' $1 $2 %}', $html_content);
-    $html_content = preg_replace('`{{tpl:([^}]*)}}`', '{% dcValue $1 %}', $html_content);
-
-    return '{% '.self::DC_TAG_CONTEXT.' %}'.$html_content;
+  /*
+  **/
+  private function getTwigFile($filename) {
+    return file_get_contents(str_replace('legacy', 'twig', $filename));
   }
 }

@@ -1,0 +1,8 @@
+{% dcContext %}{% dcBlock Entries %}
+  <div id="p{% dcValue EntryID %}" class="post {% dcValue EntryIfOdd %} {% dcValue EntryIfFirst %}" lang="{% dcValue EntryLang %}" xml:lang="{% dcValue EntryLang %}">
+    <!-- # New day date -->
+    {% dcBlock DateHeader %}<p class="day-date">{% dcValue EntryDate %}</p>{% enddcBlock %}
+
+    <h2 class="post-title"><a href="{% dcValue EntryURL %}">{% dcValue EntryTitle encode_html="1" %}</a></h2>
+  </div>
+{% enddcBlock %}

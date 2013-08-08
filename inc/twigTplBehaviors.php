@@ -30,7 +30,7 @@ class twigTplBehaviors
     global $core;
 
     $tpl_file = null;
-    $tpl_file = self::getFilePath($_ctx->current_tpl);
+    $tpl_file = $core->tpl->getFilePath($_ctx->current_tpl);
 
     if (!$tpl_file) {
       throw new Exception('No template found for '.$_ctx->current_tpl);

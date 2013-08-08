@@ -14,21 +14,13 @@
 	"twig/twig": "1.*",
 	"twig/extensions": "1.*"
     },
+    "require-dev": {
+ 	"atoum/atoum": "dev-master"
+    },
     "autoload": {
         "psr-0": { "": "inc/" }
     },
-    "repositories": [
-        {
-            "packagist": false
-        },
-        {
-            "type": "vcs",
-            "url": "/var/projets/git/Twig"
-        },
-        {
-            "type": "vcs",
-            "url": "/var/projets/git/Twig-extensions"
-        }
-    ]
-
+    "config": {
+        "bin-dir": "bin/"
+    }
 }
